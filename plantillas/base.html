@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+{% load static  %}
+
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="Melvin Canté">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Cojines EmojiGT</title>
+
+
+{% block head %}      
+  {% include "head_css.html" %}
+{% endblock %}
+
+{% block js %}      
+  {% include "js.html" %}
+{% endblock %}
+        
+
+
+  </head>
+
+  <body>
+
+
+
+{% block navbar %}      
+  {% include "navbar.html" %}
+{% endblock %}
+
+{% block navbar_user %}      
+  {% include "navbar_user.html" %}
+{% endblock %}
+
+
+    <div class="container theme-showcase" role="main">
+
+
+{% block jumbotron %}      
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>Cojines Emoji Guatemala</h1>
+        <p>Eres nuestra inspiración.</p>
+      </div>
+{% endblock %}
+
+      
+
+      
+{% block carousel %}      
+  {% include "carousel.html" %}
+{% endblock %}
+
+        
+{% block inicio %}
+{% endblock %}
+
+      </div>
+
+    </div> <!-- /container -->
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

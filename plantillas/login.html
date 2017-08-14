@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{# Para ocultar el carousel  #}
+{% block carousel %}      
+{% endblock %}
+
+{# Para ocultar el navbar  #}
+{% block navbar %}      
+{% endblock %}
+
+{% block navbar_user %}      
+{% endblock %}
+
+{# Para ocultar el jumbotron  #}
+{% block jumbotron %}      
+{% endblock %}
+
+
+{% block inicio %}
+
+
+<div class="container">
+
+<form method="post" class="form-signin">
+
+	{% csrf_token %}
+
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="form-group">
+				
+				<h1 class="form-signin-heading">Inicio de Sessión</h1>
+
+				<label for="username">Nombre de Usuario:</label>
+				<input class="form-control" type="text" name="username">
+			</div>
+			
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="form-group">
+				<label for="username">Contraseña:</label>
+				<input class="form-control" type="password" name="password">
+			</div>
+			
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="form-group">
+				
+				<input class="btn btn-lg btn-primary btn-block" type="submit" value="Ingresar">
+				<br><a href="#">Olvidé mi contraseña</a>
+			</div>
+			
+		</div>
+	</div>
+
+</div> <!-- /container -->
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+* {margin: 0px;
+padding: 0px; outline: 0;
+}
+html, body {width: 100%;
+}
+body {background: #366;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+#menu {text-align: center;
+font-size: 0.7em;
+width: 820px;
+margin: 20px auto;
+}
+#menu ul {list-style-type: none;
+}
+#menu ul li {width: 162px;
+}
+#menu ul li.nivel1 { float: left;
+margin-right: 1px;
+}
+#menu ul li a {display: block;
+text-decoration: none;
+color: #fff;
+background-color: #399;
+border: solid 1px #fff;
+padding: 8px;
+position: relative;
+}
+#menu ul li a.nivel2, #menu ul li a.nivel2ie {color: #000;
+}
+#menu ul li a.nivel1, #menu ul li a.nivel2 {display: block!important;display: none;
+position: relative;
+}
+#menu ul li:hover {position: relative;
+}
+#menu ul li a:hover, #menu ul li:hover a.nivel1 {background-color: #6CC;
+color: #000;
+position: relative;
+}
+#menu ul li ul {display: none;
+}
+#menu ul li:hover  ul.nivel2, #menu ul li a:hover  ul.nivel2{display: block;
+position: absolute;left: 0px;
+}
+#menu ul li ul li a:hover ul.nivel3, #menu ul li ul li:hover ul.nivel3 {display: block;
+position: absolute;
+left: 161px!important;left: 160px;
+top:0px!important;top: -21px;
+}
+#menu ul li ul li a {width: 160px;
+padding: 8px 0px;
+border-top-color: transparent;
+}
+#menu ul li ul li a:hover {border-top-color: #000;
+position: relative;
+}
+#menu ul li ul li ul li a.primera {border-top-color: #fff;
+}
+table.falsa {border-collapse:collapse;
+border:0px;
+float: left;
+position: relative;
+}

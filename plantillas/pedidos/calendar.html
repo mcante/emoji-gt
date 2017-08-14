@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+{# Para ocultar el carousel  #}
+{% block carousel %}      
+{% endblock %}
+
+{# Para ocultar el navbar  #}
+{% block navbar %}      
+{% endblock %}
+
+
+{% block jumbotron %}      
+{% endblock %}
+
+
+{% block inicio %}
+
+<!-- Calendar -->
+
+	<link rel="stylesheet" href="{% static 'plugins/calendar/fullcalendar.min.css' %}">
+	<script src="{% static 'plugins/calendar/moment.min.js' %}"></script>
+	<script src="{% static 'plugins/calendar/fullcalendar.min.js' %}"></script>
+	<script src="{% static 'plugins/calendar/es.js' %}"></script>
+	<link rel="stylesheet" href="{% static 'plugins/calendar/jquery-ui.css' %}">
+
+<!-- Font Awesome -->
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{% static 'plugins/awesome/AdminLTE.min.css' %}">
+
+
+
+<script>
+
+	$(document).ready(function() {
+
+		$('#calendar').fullCalendar({
+			theme: true,
+			editable: true,
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay,listMonth'
+			},
+
+			lang: 'es',
+			navLinks: true,
+			events: [
+				{% for pedido in pedidos %}
+					{% if pedido.estado_pedido.estado == 'Pendiente' %}
+		                {
+		                    title: "{{ pedido.cliente}}",
+		                    start: '{{ pedido.fecha_entrega|date:"Y-m-d" }}',
+		                    className : 'custom',
+		                    url: '{% url 'pedidos:listar_pedidos_con_detalle' pedido.id %}',
+		                },
+		            {% endif %}
+		            {% if pedido.estado_pedido.estado == 'Cancelado' %}
+		                {
+		                    title: "{{ pedido.cliente}}",
+		                    start: '{{ pedido.fecha_entrega|date:"Y-m-d" }}',
+		                    className : 'customcancelado',
+		                    url: '{% url 'pedidos:listar_pedidos_con_detalle' pedido.id %}',
+		                },
+		            {% endif %}
+		            {% if pedido.estado_pedido.estado == 'Entregado' %}
+		            	{
+		                    title: "{{ pedido.cliente}}",
+		                    start: '{{ pedido.fecha_entrega|date:"Y-m-d" }}',
+		                    className : 'customentregado',
+		                    url: '{% url 'pedidos:listar_pedidos_con_detalle' pedido.id %}',
+		                },
+		            
+		            {% endif %}
+                {% endfor %}
+			],
+
+			windowResize: function(view) {
+		      if ($(window).width() < 514){
+		        $('#calendar').fullCalendar( 'changeView', 'agendaDay' );
+		      } else {
+		        $('#calendar').fullCalendar( 'changeView', 'agendaWeek' );
+		      }
+		    }
+			
+		});
+		
+	});
+
+</script>
+
+<style>
+
+	body {
+		margin: 40px 10px;
+		padding: 0;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;
+	}
+
+	#calendar {
+		max-width: 800px;
+		margin: 0 auto;
+	}
+
+
+	.custom,
+	.custom div,
+	.custom span {
+    background-color: orange; /* background color */
+    border-color: orange;     /* border color */
+    color: white;           /* text color */
+}
+
+
+	.customcancelado,
+	.customcancelado div,
+	.customcancelado span {
+    background-color: red; /* background color */
+    border-color: red;     /* border color */
+    color: white;           /* text color */
+}
+
+
+	.customentregado,
+	.customentregado div,
+	.customentregado span {
+    background-color: green; /* background color */
+    border-color: green;     /* border color */
+    color: white;           /* text color */
+}
+</style>
+
+<body>
+
+				<div class="col-md-3 col-sm-2 col-xs-12">
+					<div class="info-box">
+						<span class="info-box-icon bg-green"><i class="fa fa-smile-o" aria-hidden="true"></i></span>
+
+						<div class="info-box-content">
+							<span class="info-box-text">Entregadas</span>
+							<span class="info-box-number">{{entregado}}</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-sm-2 col-xs-12">
+					<div class="info-box">
+						<span class="info-box-icon bg-orange"><i class="fa fa-truck" aria-hidden="true"></i></span>
+
+						<div class="info-box-content">
+							<span class="info-box-text">Por Entregar</span>
+							<span class="info-box-number">{{pendiente}}</span>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="col-md-3 col-sm-2 col-xs-12">
+					<div class="info-box">
+						<span class="info-box-icon bg-red"><i class="fa fa-thumbs-down" aria-hidden="true"></i></span>
+
+						<div class="info-box-content">
+							<span class="info-box-text">Canceladas</span>
+							<span class="info-box-number">{{cancelado}}</span>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+	<div id='calendar' class="table-responsive col-md-8" align="center" ></div>
+
+
+</body>
+
+{% endblock %}
+
+

@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+
+{# Para ocultar el carousel  #}
+{% block carousel %}      
+{% endblock %}
+
+{# Para ocultar el navbar  #}
+{% block navbar %}      
+{% endblock %}
+
+{% block jumbotron %}      
+{% endblock %}
+
+{% block inicio %}
+
+{# Datapicker #}
+<link rel="stylesheet" href="{% static 'css/datapicker/jquery-ui.css' %}"> 
+<script src="{% static 'js/datapicker/jquery-1.9.1.js' %}"></script>
+<script src="{% static 'js/datapicker/jquery-ui.js' %}"></script>
+
+{# Idioma del datapicker #}
+{% include "js/Datepicker.js" %}
+
+<script>
+	$(document).ready(function() {
+	    $('.datepicker').datepicker();
+	});
+</script>
+
+
+
+<h1>Pedido</h1>
+
+
+<form method="post" class="form-horizontal">
+
+{% csrf_token %}
+
+	<table class="table table-striped table-hover box box-primary">
+
+		<tr>
+		<div class="form-group">
+			<label for="{{ form.pedido.id_for_label }}" class="col-sm-2 control-label">
+				{{ form.pedido.label }}
+			</label>
+			<div class="col-sm-8">
+				{{ form.pedido }}
+			</div>
+		</div>
+		</tr>
+
+		<tr>
+			<td>
+				<div class="form-group">
+					<label for="{{ form.cliente.id_for_label }}" class="col-sm-2 control-label">
+						{{ form.cliente.label }}
+					</label>
+					<div class="col-sm-8">
+						{{ form.cliente }}
+					</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<div class="form-group">
+					<label for="{{ form.fecha_pedido.id_for_label }}" class="col-sm-2 control-label">
+						{{ form.fecha_pedido.label }}
+					</label>
+					<div class="col-sm-8">
+						{{ form.fecha_pedido }}
+					</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<div class="form-group">
+					<label for="{{ form.fecha_entrega.id_for_label }}" class="col-sm-2 control-label">
+						{{ form.fecha_entrega.label }}
+					</label>
+					<div class="col-sm-8">
+						{{ form.fecha_entrega }}
+					</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<div class="form-group">
+					<label for="{{ form.adelanto.id_for_label }}" class="col-sm-2 control-label">
+						{{ form.adelanto.label }}
+					</label>
+					<div class="col-sm-8">
+						{{ form.adelanto }}
+					</div>
+				</div>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>
+				<div class="form-group">
+					<label for="{{ form.estado_pedido.id_for_label }}" class="col-sm-2 control-label">
+						{{ form.estado_pedido.label }}
+					</label>
+					<div class="col-sm-8">
+						{{ form.estado_pedido }}
+					</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<div class="form-group">
+					<label for="{{ form.observaciones.id_for_label }}" class="col-sm-2 control-label">
+						{{ form.observaciones.label }}
+					</label>
+					<div class="col-sm-8">
+						{{ form.observaciones }}
+					</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<button type="submit" class="btn btn-primary">Guardar</button>
+				
+				
+					{% if pedido.id %}
+						<a class="btn btn-danger" href="{% url 'pedidos:listar_pedidos_con_detalle' pedido.id %}">Cancelar</a>
+						<a class="btn btn-danger" href="{% url 'pedidos:eliminar_pedido' pedido.id %}">Eliminar</a>
+					{% endif %}
+
+			</td>	
+		</tr>
+		
+	</table>
+
+</form>
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+
+{# Para ocultar el carousel  #}
+{% block carousel %}      
+{% endblock %}
+
+{# Para ocultar el navbar  #}
+{% block navbar %}      
+{% endblock %}
+
+{% block jumbotron %}      
+{% endblock %}
+
+{% block inicio %}
+
+
+<h1>Cojines</h1>
+
+
+<form method="post" class="form-horizontal">
+
+{% csrf_token %}
+
+	<table class="table table-striped table-hover box box-primary">
+
+		<tr>
+		<div class="form-group">
+			<label for="{{ form.cojin.id_for_label }}" class="col-sm-2 control-label">
+				{{ form.cojin.label }}
+			</label>
+			<div class="col-sm-8">
+				{{ form.cojin }}
+			</div>
+		</div>
+		</tr>
+
+		<tr>
+			<td>
+				<div class="form-group">
+					<label for="{{ form.nombre.id_for_label }}" class="col-sm-2 control-label">
+						{{ form.nombre.label }}
+					</label>
+					<div class="col-sm-8">
+						{{ form.nombre }}
+					</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<div class="form-group">
+					<label for="{{ form.tamanio.id_for_label }}" class="col-sm-2 control-label">
+						{{ form.tamanio.label }}
+					</label>
+					<div class="col-sm-8">
+						{{ form.tamanio }}
+					</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<div class="form-group">
+					<label for="{{ form.material.id_for_label }}" class="col-sm-2 control-label">
+						{{ form.material.label }}
+					</label>
+					<div class="col-sm-8">
+						{{ form.material }}
+					</div>
+				</div>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>
+				<div class="form-group">
+					<label for="{{ form.costo.id_for_label }}" class="col-sm-2 control-label">
+						{{ form.costo.label }}
+					</label>
+					<div class="col-sm-8">
+						{{ form.costo }}
+					</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<div class="form-group">
+					<label for="{{ form.precio.id_for_label }}" class="col-sm-2 control-label">
+						{{ form.precio.label }}
+					</label>
+					<div class="col-sm-8">
+						{{ form.precio }}
+					</div>
+				</div>
+			</td>
+		</tr>
+		
+
+		<tr>
+			<td>
+				<button type="submit" class="btn btn-primary">Guardar</button>
+				<a class="btn btn-danger" href="{% url 'cojines:listar_cojines' %}">Cancelar</a>
+				
+					{% if cojin.id %}
+						<a class="btn btn-danger" href="{% url 'cojines:eliminar_cojin' cojin.id %}">Eliminar</a>
+					{% endif %}
+
+			</td>	
+		</tr>
+		
+	</table>
+
+</form>
+
+
+
+
+
+{% endblock %}

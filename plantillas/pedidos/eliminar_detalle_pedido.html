@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block inicio %}
+
+{# Para ocultar el carousel  #}
+{% block carousel %}      
+{% endblock %}
+
+{# Para ocultar el navbar  #}
+{% block navbar %}      
+{% endblock %}
+
+{% block jumbotron %}      
+{% endblock %}
+
+
+
+<h1>Eliminar Detalle de Pedido</h1>
+
+<form method="post">
+	{% csrf_token %}
+	<h3>Desea eliminar el detalle del pedido de {{ object.pedido }} con fecha:  {{ object.cojin }} ?</h3>
+	<button type="submit" class="btn btn-danger">Si, eliminar</button>
+	<a class="btn btn-default" href="{% url 'pedidos:listar_pedidos_con_detalle' object.pedido.id %}">Cancelar</a>
+</form>
+
+{% endblock %}

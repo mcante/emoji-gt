@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+
+{# Para ocultar el carousel  #}
+{% block carousel %}      
+{% endblock %}
+
+{# Para ocultar el navbar  #}
+{% block navbar %}      
+{% endblock %}
+
+{% block jumbotron %}      
+{% endblock %}
+
+
+{% block inicio %}
+
+
+    <h1>Cojines</h1>
+
+    <div class="table-responsive">
+
+    <table id="tabla" class="display no-wrap" >
+        <thead align = center>
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Tamaño</th>
+                <th>cojin</th>
+                <th>Costo</th>
+                <th>Precio</th>
+                
+                <th>Acciones</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+            {% if object_list %} <!-- Pregunta primero si hay objetos dentro de nuestro contexto -->
+            {% for cojin in object_list %}
+            <tr>
+                <td>{{cojin.id}}</td>
+                <td>{{cojin.nombre}}</td>
+                <td>{{cojin.tamanio }}</td>
+                <td>{{ cojin.material }}</td>
+                <td>{{ cojin.costo }}</td>
+                <td>{{ cojin.precio }}</td>
+
+                <td>
+                    <a class="btn btn-primary" href="{% url 'cojines:modificar_cojin' cojin.id %}">Editar</a>
+                </td>
+
+            </tr>
+            {% endfor %}
+            {% else %}
+            <h1>No hay registros de cojins</h1>
+            {% endif %} 
+        </tbody>
+
+
+    </table>
+    </div>
+
+<script>
+    {% include "js/Datatable.js" %}    
+</script>
+
+
+
+
+{% endblock %}

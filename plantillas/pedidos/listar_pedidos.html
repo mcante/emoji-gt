@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+
+{# Para ocultar el carousel  #}
+{% block carousel %}      
+{% endblock %}
+
+{# Para ocultar el navbar  #}
+{% block navbar %}      
+{% endblock %}
+
+{% block jumbotron %}      
+{% endblock %}
+
+
+{% block inicio %}
+
+    <h1>Pedidos</h1>
+
+    <div class="table-responsive">
+
+    <table id="tabla" class="display no-wrap" >
+        <thead align = center>
+            <tr>
+                <th>#</th>
+                <th>Cliente</th>
+                <th>Fecha Pedido</th>
+                <th>Fecha Entrega</th>
+                <th>Adelanto/Abono</th>
+                <th>Total</th>
+                <th>Estado</th>
+
+                <th>Acciones</th>
+                
+            </tr>
+
+        </thead>
+
+        <tbody>
+            {% if object_list %} <!-- Pregunta primero si hay objetos dentro de nuestro contexto -->
+            {% for pedido in object_list %}
+            <tr>
+                <td>{{pedido.id}}</td>
+                <td>{{pedido.cliente}}</td>
+                <td>{{pedido.fecha_pedido }}</td>
+                <td>{{pedido.fecha_entrega }}</td>
+                <td>{{pedido.adelanto }}</td>
+                <td>{{ pedido.get_total }}</td>
+                <td>{{ pedido.estado_pedido }}</td>
+               
+                <td>
+                    <a class="btn btn-primary" href="{{ pedido.get_absolute_url }}">Ver</a>
+                </td>
+
+            </tr>
+            {% endfor %}
+            {% else %}
+            <h1>No hay registros de pedidos</h1>
+            {% endif %} 
+        </tbody>
+
+
+    </table>
+    </div>
+
+
+<script>
+    {% include "js/Datatable.js" %}    
+</script>
+
+
+
+
+{% endblock %}

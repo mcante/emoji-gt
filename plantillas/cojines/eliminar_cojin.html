@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block inicio %}
+
+{# Para ocultar el carousel  #}
+{% block carousel %}      
+{% endblock %}
+
+{# Para ocultar el navbar  #}
+{% block navbar %}      
+{% endblock %}
+
+{% block jumbotron %}      
+{% endblock %}
+
+
+
+<h1>Eliminar Cliente</h1>
+
+<form method="post">
+	{% csrf_token %}
+	<h3>Desea eliminar el registro de {{ object.nombre }} {{ object.descripcion }} ?</h3>
+	<button type="submit" class="btn btn-danger">Si, eliminar</button>
+	<a class="btn btn-default" href="{% url 'cojines:listar_materiales' %}">Cancelar</a>
+</form>
+
+{% endblock %}

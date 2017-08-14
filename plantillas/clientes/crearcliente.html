@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+
+
+{# Para ocultar el carousel  #}
+{% block carousel %}      
+{% endblock %}
+
+{# Para ocultar el navbar  #}
+{% block navbar %}      
+{% endblock %}
+
+{% block jumbotron %}      
+{% endblock %}
+
+{% block inicio %}
+
+
+<h1>Clientes</h1>
+
+
+<form method="post" class="form-horizontal">
+
+{% csrf_token %}
+
+	<table class="table table-striped table-hover box box-primary">
+
+		<tr>
+		<div class="form-group">
+			<label for="{{ form.cliente.id_for_label }}" class="col-sm-2 control-label">
+				{{ form.cliente.label }}
+			</label>
+			<div class="col-sm-8">
+				{{ form.cliente }}
+			</div>
+		</div>
+		</tr>
+
+		<tr>
+			<td>
+				<div class="form-group">
+					<label for="{{ form.nombre.id_for_label }}" class="col-sm-2 control-label">
+						{{ form.nombre.label }}
+					</label>
+					<div class="col-sm-8">
+						{{ form.nombre }}
+					</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<div class="form-group">
+					<label for="{{ form.telefono.id_for_label }}" class="col-sm-2 control-label">
+						{{ form.telefono.label }}
+					</label>
+					<div class="col-sm-8">
+						{{ form.telefono }}
+					</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<div class="form-group">
+					<label for="{{ form.celular.id_for_label }}" class="col-sm-2 control-label">
+						{{ form.celular.label }}
+					</label>
+					<div class="col-sm-8">
+						{{ form.celular }}
+					</div>
+				</div>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>
+				<div class="form-group">
+					<label for="{{ form.celular_2.id_for_label }}" class="col-sm-2 control-label">
+						{{ form.celular_2.label }}
+					</label>
+					<div class="col-sm-8">
+						{{ form.celular_2 }}
+					</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<div class="form-group">
+					<label for="{{ form.facebook.id_for_label }}" class="col-sm-2 control-label">
+						{{ form.facebook.label }}
+					</label>
+					<div class="col-sm-8">
+						{{ form.facebook }}
+					</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<div class="form-group">
+					<label for="{{ form.latitud.id_for_label }}" class="col-sm-2 control-label">
+						{{ form.latitud.label }}
+					</label>
+					<div class="col-sm-8">
+						{{ form.latitud }}
+					</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<div class="form-group">
+					<label for="{{ form.longitud.id_for_label }}" class="col-sm-2 control-label">
+						{{ form.longitud.label }}
+					</label>
+					<div class="col-sm-8">
+						{{ form.longitud }}
+					</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<div class="form-group">
+					<label for="{{ form.direccion.id_for_label }}" class="col-sm-2 control-label">
+						{{ form.direccion.label }}
+					</label>
+					<div class="col-sm-8">
+						{{ form.direccion }}
+					</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<div class="form-group">
+					<label for="{{ form.observaciones.id_for_label }}" class="col-sm-2 control-label">
+						{{ form.observaciones.label }}
+					</label>
+					<div class="col-sm-8">
+						{{ form.observaciones }}
+					</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<button type="submit" class="btn btn-primary">Guardar</button>
+				
+					{% if cliente.id %}
+						<a class="btn btn-danger" href="{% url 'clientes:perfil_cliente' cliente.id %}">Cancelar</a>
+						<a class="btn btn-danger" href="{% url 'clientes:eliminar_cliente' cliente.id %}">Eliminar</a>
+					{% endif %}
+			</td>	
+		</tr>
+		
+	</table>
+
+</form>
+
+
+
+
+
+{% endblock %}

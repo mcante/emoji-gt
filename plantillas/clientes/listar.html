@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+
+{# Para ocultar el carousel  #}
+{% block carousel %}      
+{% endblock %}
+
+{# Para ocultar el navbar  #}
+{% block navbar %}      
+{% endblock %}
+
+{% block jumbotron %}      
+{% endblock %}
+
+
+{% block inicio %}
+
+
+    <h1>Clientes</h1>
+
+    <div class="table-responsive">
+
+    <table id="tabla" class="display no-wrap" >
+        <thead align = center>
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Celular</th>
+                <th>Celular 2</th>
+                <th>Facebook</th>
+                <th>Dirección</th>
+                <th>Observaciones</th>
+                
+                <th>Acciones</th>
+                
+            </tr>
+
+        </thead>
+
+        <tbody>
+            {% if object_list %} <!-- Pregunta primero si hay objetos dentro de nuestro contexto -->
+            {% for cliente in object_list %}
+            <tr>
+                <td>{{cliente.id}}</td>
+                <td>{{cliente.nombre}}</td>
+                <td>{{cliente.celular }}</td>
+                <td>{{ cliente.celular_2 }}</td>
+                <td>{{ cliente.facebook }}</td>
+                <td>{{ cliente.direccion }}</td>
+                <td>{{ cliente.observaciones }}</td>
+                
+                <td>
+                    <a class="btn btn-primary" href="{% url 'clientes:perfil_cliente' cliente.id %}">Ver</a>
+                </td>
+
+            </tr>
+            {% endfor %}
+            {% else %}
+            <h1>No hay registros de clientes</h1>
+            {% endif %} 
+        </tbody>
+
+
+    </table>
+    </div>
+
+
+<script>
+    {% include "js/Datatable.js" %}    
+</script>
+
+
+
+
+{% endblock %}

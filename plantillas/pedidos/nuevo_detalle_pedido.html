@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+
+{# Para ocultar el carousel  #}
+{% block carousel %}      
+{% endblock %}
+
+{# Para ocultar el navbar  #}
+{% block navbar %}      
+{% endblock %}
+
+{% block jumbotron %}      
+{% endblock %}
+
+{% block inicio %}
+
+
+<h1>Añadir a Pedido</h1>
+
+
+<form method="post" class="form-horizontal">
+
+{% csrf_token %}
+
+		<table class="table table-striped table-hover box box-primary">
+
+			<tr>
+			<div class="form-group">
+				<label for="{{ form.detallepedido.id_for_label }}" class="col-sm-2 control-label">
+					{{ form.detallepedido.label }}
+				</label>
+				<div class="col-sm-8">
+					{{ form.detallepedido }}
+				</div>
+			</div>
+			</tr>
+
+			<tr>
+				<td>
+					<div class="form-group">
+						
+						<div class="col-sm-8">
+							{{ form.pedido }}
+						</div>
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<div class="form-group">
+						<label for="{{ form.cojin.id_for_label }}" class="col-sm-2 control-label">
+							{{ form.cojin.label }}
+						</label>
+						<div class="col-sm-8">
+							{{ form.cojin }}
+						</div>
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<div class="form-group">
+						<label for="{{ form.precio.id_for_label }}" class="col-sm-2 control-label">
+							{{ form.precio.label }}
+						</label>
+						<div class="col-sm-8">
+							{{ form.precio }}
+						</div>
+					</div>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<div class="form-group">
+						<label for="{{ form.cantidad.id_for_label }}" class="col-sm-2 control-label">
+							{{ form.cantidad.label }}
+						</label>
+						<div class="col-sm-8">
+							{{ form.cantidad }}
+						</div>
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<div class="form-group">
+						<label for="{{ form.bordado.id_for_label }}" class="col-sm-2 control-label">
+							{{ form.bordado.label }}
+						</label>
+						<div class="col-sm-8">
+							{{ form.bordado }}
+						</div>
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<div class="form-group">
+						<label for="{{ form.descuento.id_for_label }}" class="col-sm-2 control-label">
+							{{ form.descuento.label }}
+						</label>
+						<div class="col-sm-8">
+							{{ form.descuento }}
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+                <td>
+                  <div class="form-group">
+                    <label for="{{ detalle_form.bordado.id_for_label }}" class="col-sm-2 control-label">
+                      {{ detalle_form.bordado.label }}
+                    </label>
+                    <div class="col-sm-8">
+                      {{ detalle_form.bordado }}
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+			<tr>
+				<td>
+					<button type="submit" class="btn btn-primary">Guardar</button>
+					
+						{% if detallepedido.id %}
+							<a class="btn btn-danger" href="{% url 'pedidos:listar_pedidos_con_detalle' detallepedido.pedido.id %}">Cancelar</a>
+							<a class="btn btn-danger" href="{% url 'pedidos:eliminar_detalle_pedido' detallepedido.pedido.id %}">Eliminar</a>
+						{% endif %}
+				</td>	
+			</tr>
+			
+		</table>
+
+</form>
+
+
+
+
+
+{% endblock %}

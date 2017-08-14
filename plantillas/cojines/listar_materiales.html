@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+
+{# Para ocultar el carousel  #}
+{% block carousel %}      
+{% endblock %}
+
+{# Para ocultar el navbar  #}
+{% block navbar %}      
+{% endblock %}
+
+{% block jumbotron %}      
+{% endblock %}
+
+
+{% block inicio %}
+
+
+    <h1>Materiales</h1>
+
+    <div class="table-responsive">
+
+    <table id="tabla" class="display no-wrap" >
+        <thead align = center>
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio/Yarda</th>
+                <th>modificado</th>
+
+                <th>Acciones</th>
+                
+            </tr>
+
+        </thead>
+
+        <tbody>
+            {% if object_list %} <!-- Pregunta primero si hay objetos dentro de nuestro contexto -->
+            {% for material in object_list %}
+            <tr>
+                <td>{{material.id}}</td>
+                <td>{{material.nombre}}</td>
+                <td>{{material.descripcion }}</td>
+                <td>{{ material.precio_yarda }}</td>
+                <td>{{ material.modificado }}</td>
+
+                <td>
+                    <a class="btn btn-primary" href="{% url 'cojines:modificar_material' material.id %}">Editar</a>
+                </td>
+
+            </tr>
+            {% endfor %}
+            {% else %}
+            <h1>No hay registros de materials</h1>
+            {% endif %} 
+        </tbody>
+
+
+    </table>
+    </div>
+
+<script>
+    {% include "js/Datatable.js" %}    
+</script>
+
+
+
+
+{% endblock %}
