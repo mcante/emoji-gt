@@ -1,3 +1,5 @@
+{% load static  %}
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -5,7 +7,7 @@
     <h1>Entregas Realizadas</h1>
     <meta charset="UTF-8">
     <style type="text/css">
-    #mapa { width:80%;height:800px; }
+    #mapa { width:50%;height:800px; }
     </style>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript">
@@ -15,7 +17,9 @@
     
     function initialize() {
       var marcadores = [
-        ['EORM BOSQUES DEL QUETZAL', 14.70795, -90.57965],
+        {% for infocliente in object_list %}
+          ['{{infocliente.cliente.direccion }}', {{infocliente.cliente.latitud}}, {{infocliente.cliente.longitud }}],
+        {% endfor %}
       ];
 
       var map = new google.maps.Map(document.getElementById('mapa'), {
@@ -40,7 +44,7 @@
           
           animation:google.maps.Animation.BOUNCE,
           // animation:google.maps.Animation.DROP,
-          icon: "   emoji.png"
+          icon: "{% static 'emoji.png' %}"
         });
 
         marker.setMap(map);
@@ -66,12 +70,6 @@
     <div id="mapa"></div>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvSKH3siD9t7k3TbAqnETfgFu_0ojTvUQ&callback=myMap"></script>
-
-
-      {% for infocliente in object_list %}
-        [{{infocliente.cliente.direccion }}, {{infocliente.cliente.latitud}}, {{infocliente.cliente.longitud }}],
-      {% endfor %}
-    
 
   </body>
 </html>
