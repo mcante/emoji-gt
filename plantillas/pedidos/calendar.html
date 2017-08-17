@@ -24,6 +24,8 @@
 	<script src="{% static 'plugins/calendar/es.js' %}"></script>
 	<link rel="stylesheet" href="{% static 'plugins/calendar/jquery-ui.css' %}">
 
+	<script src="{% static 'plugins/chart/Chart.js' %}"></script>
+
 <!-- Font Awesome -->
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -96,11 +98,11 @@
 		margin: 40px 10px;
 		padding: 0;
 		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-		font-size: 14px;
+		font-size: 12px;
 	}
 
 	#calendar {
-		max-width: 800px;
+		max-width: 700px;
 		margin: 0 auto;
 	}
 
@@ -141,7 +143,7 @@
 				<span class="info-box-icon bg-green"><i class="fa fa-smile-o" aria-hidden="true"></i></span>
 
 				<div class="info-box-content">
-					<span class="info-box-text">Entregadas</span>
+					<span class="info-box-text">Entregados</span>
 					<span class="info-box-number">{{entregado}}</span>
 				</div>
 			</div>
@@ -164,7 +166,7 @@
 				<span class="info-box-icon bg-red"><i class="fa fa-thumbs-down" aria-hidden="true"></i></span>
 
 				<div class="info-box-content">
-					<span class="info-box-text">Canceladas</span>
+					<span class="info-box-text">Cancelados</span>
 					<span class="info-box-number">{{cancelado}}</span>
 				</div>
 			</div>
@@ -174,11 +176,46 @@
 	<div class="row">
 		<div id='calendar' class="table-responsive col-md-8 col-sm4 col-xs-12" align="center" ></div>
 	</div>
-	<div class="row">
-		<h3>_</h3>
+
+
+	<div class="table-responsive col-md-8 col-sm4 col-xs-12" align="center" >
+		<h3>Ventas Por Mes</h3>
+		<canvas id="popChart" width="300" height="100"></canvas>
 	</div>
 
 </div>
+
+
+
+<script type="text/javascript">
+	var popCanvas = document.getElementById("popChart");
+	var barChart = new Chart(popCanvas, {
+  type: 'bar',
+  data: {
+    labels: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+    datasets: [{
+      label: '',
+      data: [{{enero}}, {{febrero}}, {{marzo}}, {{abril}}, {{mayo}}, {{junio}}, {{julio}}, {{agosto}}, {{septiembre}}, {{octubre}}, {{noviembre}}, {{diciembre}}],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(54, 162, 235, 0.5)',
+        'rgba(255, 206, 86, 0.5)',
+        'rgba(75, 192, 192, 0.5)',
+        'rgba(153, 102, 255, 0.5)',
+        'rgba(255, 159, 64, 0.5)',
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(54, 162, 235, 0.5)',
+        'rgba(255, 206, 86, 0.5)',
+        'rgba(75, 192, 192, 0.5)',
+        'rgba(70, 180, 145, 0.5)',
+        'rgba(45, 92, 92, 0.5)',
+        'rgba(153, 102, 255, 0.5)'
+      ]
+    }]
+  }
+});
+</script>
+
 
 
 

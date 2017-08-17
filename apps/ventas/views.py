@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect
 from .forms import PedidoForm, DetallePedidoForm
 from .models import Pedido, DetallePedido
 
+from django.utils.timezone import datetime
 
 from django.views.generic import ListView, DetailView, DeleteView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView
@@ -102,5 +103,18 @@ class VentasCantidades(TemplateView):
 		context['pendiente'] = Pedido.objects.filter(estado_pedido = 1).count()
 		context['entregado'] = Pedido.objects.filter(estado_pedido = 2).count()
 		context['cancelado'] = Pedido.objects.filter(estado_pedido = 3).count()
-
+		
+		context['enero'] = Pedido.objects.filter(fecha_entrega__year = datetime.now().year, fecha_entrega__month = 1).count()
+		context['febrero'] = Pedido.objects.filter(fecha_entrega__year = datetime.now().year, fecha_entrega__month = 2).count()
+		context['marzo'] = Pedido.objects.filter(fecha_entrega__year = datetime.now().year, fecha_entrega__month = 3).count()
+		context['abril'] = Pedido.objects.filter(fecha_entrega__year = datetime.now().year, fecha_entrega__month = 4).count()
+		context['mayo'] = Pedido.objects.filter(fecha_entrega__year = datetime.now().year, fecha_entrega__month = 5).count()
+		context['junio'] = Pedido.objects.filter(fecha_entrega__year = datetime.now().year, fecha_entrega__month = 6).count()
+		context['julio'] = Pedido.objects.filter(fecha_entrega__year = datetime.now().year, fecha_entrega__month = 7).count()
+		context['agosto'] = Pedido.objects.filter(fecha_entrega__year = datetime.now().year, fecha_entrega__month = 8).count()
+		context['septiembre'] = Pedido.objects.filter(fecha_entrega__year = datetime.now().year, fecha_entrega__month = 9).count()
+		context['octubre'] = Pedido.objects.filter(fecha_entrega__year = datetime.now().year, fecha_entrega__month = 10).count()
+		context['noviembre'] = Pedido.objects.filter(fecha_entrega__year = datetime.now().year, fecha_entrega__month = 11).count()
+		context['diciembre'] = Pedido.objects.filter(fecha_entrega__year = datetime.now().year, fecha_entrega__month = 12).count()
+		
 		return context
